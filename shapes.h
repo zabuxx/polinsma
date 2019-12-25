@@ -21,7 +21,7 @@ typedef weak_ptr<Circle>   Circle_wp;
 typedef weak_ptr<Triangle> Triangle_wp;
 typedef weak_ptr<EquiTriangle> EquiTriangle_wp;
 
-//list type to hold all possible types
+//list type to contain all types of classes through Shape_p
 typedef list<Shape_p> ShapeList;
 typedef list<Shape_p>::iterator ShapeList_iter;
 typedef list<Shape_p>::const_iterator ShapeList_citer;
@@ -45,8 +45,11 @@ class Shape: public enable_shared_from_this<Shape>  {
         string get_name() const { return name; }
         virtual double area() const = 0;
 
-        virtual Circle_p is_circle() { return Circle_p(); }
-        virtual Triangle_p is_triangle() { return Triangle_p(); }
+        //is_XXX() function allow opbtaining shared_ptr to derived class. For
+        //now just return empty shared_ptr to allow testing class type (through
+        //coversion to bool)
+        virtual Circle_p       is_circle()       { return Circle_p(); }
+        virtual Triangle_p     is_triangle()     { return Triangle_p(); }
         virtual EquiTriangle_p is_equitriangle() { return EquiTriangle_p(); }
 };
 
@@ -59,7 +62,7 @@ class Circle : public Shape{
         double area() const { return radius * radius * 3.14159; }
 
         virtual Circle_p is_circle() { 
-            return dynamic_pointer_cast<Circle>(Shape::shared_from_this()); }
+            return dynamic_pointer_cast<Circle>(shared_from_this()); }
 };
 
 class Triangle : public Shape {
@@ -73,16 +76,14 @@ class Triangle : public Shape {
         double area() const;
 
         virtual Triangle_p is_triangle() { 
-                        return dynamic_pointer_cast<Triangle>(Shape::shared_from_this()); }
+            return dynamic_pointer_cast<Triangle>(shared_from_this()); }
 };
 
 class EquiTriangle : public Triangle {
     public:
         EquiTriangle(const string& n, double l) : Triangle(n,l,l,l) { }
 
-        EquiTriangle_p is_equitriangle() { 
-            return dynamic_pointer_cast<EquiTriangle>(Shape::shared_from_this()); }
-
-        
+        virtual EquiTriangle_p is_equitriangle() { 
+            return dynamic_pointer_cast<EquiTriangle>(shared_from_this()); }
 };
 
