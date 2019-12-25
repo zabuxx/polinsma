@@ -51,7 +51,7 @@ class Shape: public enable_shared_from_this<Shape>  {
         virtual EquiTriangle_p is_equitriangle() { return EquiTriangle_p(); }
 };
 
-class Circle : public Shape{
+class Circle : public Shape {
     private:
         double radius;
     public:
@@ -59,7 +59,7 @@ class Circle : public Shape{
         Circle(const string& n, double r) : 
             Shape(n), radius(r) { }
 
-        double area() const { return radius * radius * 3.14159; }
+        virtual double area() const { return radius * radius * 3.14159; }
 
         virtual Circle_p is_circle() { 
             return dynamic_pointer_cast<Circle>(shared_from_this()); }
@@ -74,7 +74,7 @@ class Triangle : public Shape {
 
         bool is_valid_triangle() const;
 
-        double area() const;
+        virtual double area() const;
 
         virtual Triangle_p is_triangle() { 
             return dynamic_pointer_cast<Triangle>(shared_from_this()); }
@@ -82,7 +82,7 @@ class Triangle : public Shape {
 
 class EquiTriangle : public Triangle {
     public:
-        //Initliaize the equilateral triangle by specifying length of a side
+        //Initialize equilateral triangle by specifying length of a side
         EquiTriangle(const string& n, double l) : 
             Triangle(n,l,l,l) { }
 
