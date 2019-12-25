@@ -45,9 +45,9 @@ class Shape: public enable_shared_from_this<Shape>  {
         string get_name() const { return name; }
         virtual double area() const = 0;
 
-        //is_XXX() functions allow opbtaining shared_ptr to derived class. For
+        //is_XXX() function allows opbtaining shared_ptr to a derived class. For
         //now just return empty shared_ptr to allow testing class type (through
-        //coversion to bool)
+        //coversion to bool), to be overloaded in derived class.
         virtual Circle_p       is_circle()       { return Circle_p(); }
         virtual Triangle_p     is_triangle()     { return Triangle_p(); }
         virtual EquiTriangle_p is_equitriangle() { return EquiTriangle_p(); }
