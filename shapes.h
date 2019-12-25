@@ -40,14 +40,17 @@ class Shape: public enable_shared_from_this<Shape>  {
     protected:
         string name;
     public:
-        Shape(const string& n): name(n) { };
+        //Shape needs at least a name
+        Shape(const string& n) : 
+            name(n) { };
 
         string get_name() const { return name; }
+
         virtual double area() const = 0;
 
-        //is_XXX() function allows opbtaining shared_ptr to a derived class. For
-        //now just return empty shared_ptr to allow testing class type (through
-        //coversion to bool), to be overloaded in derived class.
+        //is_XXX() function allows opbtaining shared_ptr to a derived class. At
+        //this point just return empty shared_ptr to allow testing class type
+        //(through coversion to bool), to be overloaded in derived class.
         virtual Circle_p       is_circle()       { return Circle_p(); }
         virtual Triangle_p     is_triangle()     { return Triangle_p(); }
         virtual EquiTriangle_p is_equitriangle() { return EquiTriangle_p(); }
@@ -57,7 +60,9 @@ class Circle : public Shape{
     private:
         double radius;
     public:
-        Circle(const string& n, double r) : Shape(n), radius(r) { }
+        //Initialize circle by specifying radius
+        Circle(const string& n, double r) : 
+            Shape(n), radius(r) { }
 
         double area() const { return radius * radius * 3.14159; }
 
@@ -69,6 +74,7 @@ class Triangle : public Shape {
     private:
         array<double, 3> length;
     public:
+        //Initialize triangle by specifying length of each side
         Triangle(const string&, double, double, double);
 
         bool is_valid_triangle() const;
@@ -81,7 +87,9 @@ class Triangle : public Shape {
 
 class EquiTriangle : public Triangle {
     public:
-        EquiTriangle(const string& n, double l) : Triangle(n,l,l,l) { }
+        //Initliaize the equilateral triangle by specifying length of a side
+        EquiTriangle(const string& n, double l) : 
+            Triangle(n,l,l,l) { }
 
         virtual EquiTriangle_p is_equitriangle() { 
             return dynamic_pointer_cast<EquiTriangle>(shared_from_this()); }

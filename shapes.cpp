@@ -13,6 +13,7 @@ bool Triangle::is_valid_triangle() const {
 }
 
 double Triangle::area() const {
+    //Use Heron's formula to calculate triangle surface area
     double p = (length[0] + length[1] + length[2]) / 2;
 
     double i = p * (p - length[0]) * (p -length[1]) * (p -length[2]);
