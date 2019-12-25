@@ -4,10 +4,10 @@
 
 C++ POlymorphic INhertiance example with SMArt pointers
 
-The example attempts to provide a modern C++ implementation using the standard library of the following concepts:
+The example attempts to provide a modern C++ implementation of the following concepts:
   * Polymorphism
   * Smart pointers
-  * Containers
+  * Containers 
 
 It provies in a way to safely and efficiently manage large sets of derived classes.
 
@@ -32,5 +32,9 @@ The `shared_ptr` is obtained through `shared_from_this()` member of `enabled_sha
 ### ShapeList
 
 Given the above we can use `Shape_p` in a container to hold classes of all direved types. The usage of standard library containers and smart pointers give an excellent flexibility in passing the objects around, while ensuring ellegant and correct memory management.
+
+# Feedback
+
+Is welcome!
 
 
