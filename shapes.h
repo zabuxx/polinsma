@@ -16,11 +16,6 @@ typedef shared_ptr<Circle>   Circle_p;
 typedef shared_ptr<Triangle> Triangle_p;
 typedef shared_ptr<EquiTriangle> EquiTriangle_p;
 
-typedef weak_ptr<Shape>    Shape_wp;
-typedef weak_ptr<Circle>   Circle_wp;
-typedef weak_ptr<Triangle> Triangle_wp;
-typedef weak_ptr<EquiTriangle> EquiTriangle_wp;
-
 //list type to contain all types of classes through Shape_p
 typedef list<Shape_p> ShapeList;
 typedef list<Shape_p>::iterator ShapeList_iter;
