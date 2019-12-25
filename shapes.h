@@ -94,15 +94,3 @@ class EquiTriangle : public Triangle {
         virtual EquiTriangle_p is_equitriangle() { 
             return dynamic_pointer_cast<EquiTriangle>(shared_from_this()); }
 };
-
-/* Provides output: 
- *
- *  Shape c1 has area = 3.14159
- *  Shape et has area = 1.73205
- *  Shape t1 has area = 1.47902
- *
- *  Shape c1 is not a triangle
- *  Shape et is a valid triangle.
- *  Shape t2 is an invalid triangle.
- * 
-*/
