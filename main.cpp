@@ -22,25 +22,25 @@ ShapeList generate_ShapeList() {
 int main() {
     ShapeList sl = generate_ShapeList();
 
-    for(ShapeList_citer sli = sl.begin(); sli != sl.end(); sli++) 
-        cout << "Shape " << (*sli)->get_name() 
-             << " has area = " << (*sli)->area() << endl;
+    for(Shape_p shape : sl) {
+        cout << "Shape " << shape->get_name()
+             << " has area = " << shape->area() << endl;
+    }
     cout << endl;
 
     sl.pop_back(); // destroy last added element: t
     sl.push_back(make_shared<Triangle>("t2", 1,2,4));
 
-    for(ShapeList_citer sli = sl.begin();sli != sl.end();sli++) {
-        cout << "Shape " << (*sli)->get_name() << " is ";
+    for(Shape_p shape : sl) {
+        cout << "Shape " << shape->get_name() << " is ";
 
-        if(Triangle_p tp = (*sli)->is_triangle())  {
+        if(Triangle_p tp = shape->is_triangle())  {
             cout << (tp->is_valid_triangle() ? "a valid" : "an invalid")
                  << " triangle." << endl;
         } else {
             cout << "not a triangle" << endl;
         }
     }   
-    
 
     return 0;
 }
