@@ -38,6 +38,8 @@ class Shape: public enable_shared_from_this<Shape>  {
         //Shape needs at least a name
         Shape(const string& n) : 
             name(n) { };
+        virtual ~Shape() { }
+        
 
         string get_name() const { return name; }
 
