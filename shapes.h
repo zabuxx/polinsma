@@ -16,11 +16,6 @@ typedef shared_ptr<Circle>   Circle_p;
 typedef shared_ptr<Triangle> Triangle_p;
 typedef shared_ptr<EquiTriangle> EquiTriangle_p;
 
-//list type to contain all types of classes through Shape_p
-typedef list<Shape_p> ShapeList;
-typedef list<Shape_p>::iterator ShapeList_iter;
-typedef list<Shape_p>::const_iterator ShapeList_citer;
-
 
 /*! \brief Base class for all other Shape classes
  *
@@ -61,9 +56,9 @@ class Circle : public Shape {
         Circle(const string& n, double r) : 
             Shape(n), radius(r) { }
 
-        virtual double area() const { return radius * radius * 3.14159; }
+        virtual double area() const override { return radius * radius * 3.14159; }
 
-        virtual Circle_p is_circle() { 
+        virtual Circle_p is_circle() override  { 
             return dynamic_pointer_cast<Circle>(shared_from_this()); }
 };
 
@@ -76,9 +71,9 @@ class Triangle : public Shape {
 
         bool is_valid_triangle() const;
 
-        virtual double area() const;
+        virtual double area() const override;
 
-        virtual Triangle_p is_triangle() { 
+        virtual Triangle_p is_triangle() override { 
             return dynamic_pointer_cast<Triangle>(shared_from_this()); }
 };
 
@@ -88,6 +83,6 @@ class EquiTriangle : public Triangle {
         EquiTriangle(const string& n, double l) : 
             Triangle(n,l,l,l) { }
 
-        virtual EquiTriangle_p is_equitriangle() { 
+        virtual EquiTriangle_p is_equitriangle() override { 
             return dynamic_pointer_cast<EquiTriangle>(shared_from_this()); }
 };
