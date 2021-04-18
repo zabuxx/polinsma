@@ -4,8 +4,8 @@
 
 using namespace std;
 
-ShapeList generate_ShapeList() {
-    ShapeList sl;
+list<Shape_p> generate_ShapeList() {
+    list<Shape_p> sl;
 
     Circle_p c = make_shared<Circle>("c1", 1);
     EquiTriangle_p e = make_shared<EquiTriangle>("et",2);
@@ -20,8 +20,8 @@ ShapeList generate_ShapeList() {
 }
 
 int main() {
-    ShapeList sl = generate_ShapeList();
-
+    list<Shape_p> sl = generate_ShapeList();
+    
     for(Shape_p shape : sl) {
         cout << "Shape " << shape->get_name()
              << " has area = " << shape->area() << endl;
